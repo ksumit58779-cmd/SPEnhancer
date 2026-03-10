@@ -1,0 +1,299 @@
+/* ============================================
+   animations.css — All animation effects
+   AI Prompt Enhancer
+   ============================================ */
+
+/* ══════════════════════════════════════
+   SHIMMER SWEEP (Apple Intelligence style)
+   ══════════════════════════════════════ */
+
+.shimmer-bar {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 40%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(244,201,93,0.06) 20%,
+    rgba(255,255,255,0.18) 50%,
+    rgba(244,201,93,0.06) 80%,
+    transparent 100%
+  );
+  filter: blur(2px);
+  opacity: 0;
+}
+
+.shimmer-bar.sweep {
+  opacity: 1;
+  animation: sweepAnim 0.72s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes sweepAnim {
+  from { left: -40%; }
+  to   { left: 140%; }
+}
+
+/* ══════════════════════════════════════
+   SPARKLE PARTICLES
+   ══════════════════════════════════════ */
+
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 11;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  animation: sparklePop 0.6s ease-out forwards;
+}
+
+@keyframes sparklePop {
+  0%   { transform: scale(0) translate(0, 0); opacity: 1; }
+  100% { transform: scale(1.5) translate(var(--dx), var(--dy)); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   CARD ENTRANCE
+   ══════════════════════════════════════ */
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-card {
+  animation: cardIn 0.35s ease both;
+}
+
+/* ══════════════════════════════════════
+   FADE IN UP
+   ══════════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* ══════════════════════════════════════
+   FADE IN
+   ══════════════════════════════════════ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease both;
+}
+
+/* ══════════════════════════════════════
+   SCALE IN (modal pop)
+   ══════════════════════════════════════ */
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+/* ══════════════════════════════════════
+   BOUNCE IN (badge)
+   ══════════════════════════════════════ */
+
+@keyframes bounceIn {
+  0%   { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.bounce-in {
+  animation: bounceIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+/* ══════════════════════════════════════
+   LOADING SPINNER
+   ══════════════════════════════════════ */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  animation: spin 0.8s linear infinite;
+}
+
+/* ══════════════════════════════════════
+   PULSE (loading text)
+   ══════════════════════════════════════ */
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════
+   BUTTON IDLE SHIMMER
+   ══════════════════════════════════════ */
+
+@keyframes btnShimmer {
+  0%, 100% { left: -100%; }
+  50%       { left: 150%; }
+}
+
+/* ══════════════════════════════════════
+   WAVE VISUALIZER BARS
+   ══════════════════════════════════════ */
+
+.wave-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+}
+
+.wave-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.6;
+  height: 3px;
+  transition: height 0.1s ease;
+}
+
+/* ══════════════════════════════════════
+   SKELETON SHIMMER
+   ══════════════════════════════════════ */
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ══════════════════════════════════════
+   TEXT REVEAL (output)
+   ══════════════════════════════════════ */
+
+.text-reveal {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.text-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════
+   GLOW PULSE (ambient effect)
+   ══════════════════════════════════════ */
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(124,106,255,0);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(124,106,255,0.15);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════
+   STAGGERED CHILDREN
+   (add to parent, children get delays)
+   ══════════════════════════════════════ */
+
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger > *:nth-child(8) { animation-delay: 0.40s; }
+
+/* ══════════════════════════════════════
+   SLIDE IN FROM RIGHT (toast)
+   ══════════════════════════════════════ */
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ══════════════════════════════════════
+   FLOAT (hero decoration)
+   ══════════════════════════════════════ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════
+   GRADIENT SHIFT (accent backgrounds)
+   ══════════════════════════════════════ */
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-shift {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
